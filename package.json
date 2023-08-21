@@ -1,0 +1,15 @@
+{
+  "name": "mime-icons",
+  "version": "0.1.0",
+  "description": "pick an icon for specific media resource by MIME from `Content-Type` header fields",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mime",
+    "icons"
+  ],
+  "author": "delong",
+  "license": "MIT"
+}
