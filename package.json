@@ -1,15 +1,19 @@
 {
   "name": "mime-icons",
-  "version": "0.1.0",
-  "description": "pick an icon for specific media resource by MIME from `Content-Type` header fields",
+  "version": "0.0.1",
+  "description": "Pick an icon for specific media resource by MIME",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "type": "module",
+  "scripts": {},
   "keywords": [
     "mime",
     "icons"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeronW/mime-icons.git"
+  },
+  "homepage": "https://github.com/DeronW/mime-icons",
   "author": "delong",
   "license": "MIT"
 }

@@ -1,12 +1,16 @@
-import ContentType from "src/content-type.json";
+import ContentType from "./src/content-type.json";
 import { extensions } from "./src/extension";
 
-export default icon;
+export default { getIconName };
 
-const Extention2IconMap = {};
-const DefaultIcon = extensions.default.file.icon;
+let Extention2IconMap = null;
+let DefaultIcon = extensions.default.file.icon;
 
 function initExtension2IconMap() {
+  if (Extention2IconMap) return;
+
+  Extention2IconMap = {};
+
   const appendExtension = (ext, name, isLight) => {
     const e = ext[0] == "." ? ext.slice(1) : ext;
     Extention2IconMap[e] = `file_type_${isLight ? "light_" : ""}${name}.svg`;
@@ -14,12 +18,12 @@ function initExtension2IconMap() {
 
   for (const item of extensions.supported) {
     if (item.extensions) {
-      for (const ext of i.extensions)
+      for (const ext of item.extensions)
         appendExtension(ext, item.icon, item.light);
     }
 
     if (item.languages) {
-      for (const lng of i.languages) {
+      for (const lng of item.languages) {
         appendExtension(lng.defaultExtension, item.icon, item.light);
       }
     }
@@ -28,13 +32,12 @@ function initExtension2IconMap() {
 
 initExtension2IconMap();
 
-function icon(args) {
+function getIconName(args) {
   const { url, contentType } = args;
-  const filename = getExtensionName(contentType, url);
-  return import("./icons/" + filename);
+  return getExtensionName(contentType, url);
 }
 
-function getExtensionName(contentType, url) {
+function getExtensionName(contentType = "", url = "") {
   const ctExts = ContentType[contentType];
 
   const paths = url.split("?")[0]?.split("/");
