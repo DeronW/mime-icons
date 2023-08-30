@@ -1,6 +1,6 @@
 {
   "name": "mime-icons",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Pick an icon for specific media resource by MIME",
   "main": "index.js",
   "type": "module",

@@ -1,0 +1,11 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+td {
+  border: 1px solid lightblue;
+  padding: 4px 8px;
+}

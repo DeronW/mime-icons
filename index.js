@@ -4,7 +4,7 @@ import { extensions } from "./src/extension";
 export default { getIconName };
 
 let Extention2IconMap = null;
-let DefaultIcon = extensions.default.file.icon;
+let DefaultIcon = `default_${extensions.default.file.icon}.svg`;
 
 function initExtension2IconMap() {
   if (Extention2IconMap) return;
@@ -18,16 +18,26 @@ function initExtension2IconMap() {
 
   for (const item of extensions.supported) {
     if (item.extensions) {
-      for (const ext of item.extensions)
+      for (const ext of item.extensions) {
         appendExtension(ext, item.icon, item.light);
+      }
     }
-
     if (item.languages) {
-      for (const lng of item.languages) {
-        appendExtension(lng.defaultExtension, item.icon, item.light);
+      for (const lan of item.languages) {
+        const idList = Array.isArray(lan.ids) ? lan.ids : [lan.ids];
+        for (const id of idList) {
+          appendExtension(id, item.icon, item.light);
+        }
+        appendExtension(lan.defaultExtension, item.icon, item.light);
       }
     }
   }
+
+  // override conflict extensions
+  appendExtension("html", "html", false);
+  appendExtension("css", "css", false);
+  appendExtension("json", "json", true);
+  appendExtension("js", "js", true);
 }
 
 initExtension2IconMap();
